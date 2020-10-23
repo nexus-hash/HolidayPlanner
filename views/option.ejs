@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Welcome to Holiday-Planner</title>
+    <title>Options</title>
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8;ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/build/tailwind.css" />
@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
     <style> 
       .name {
     overflow:hidden;
@@ -44,12 +46,32 @@
         </div>
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0">
-            <img class="hidden lg:block h-8 w-auto" src="images/logo.svg" alt="Holiday Planner logo">
+            <img class="hidden lg:block h-8 w-auto" src="/images/logo.svg" alt="Holiday Planner logo">
             
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">New User</a>
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Packages</a>
+            </div>
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Tours</a>
+            </div>
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flights</a>
+            </div>
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Hotels</a>
+            </div>
+          </div>
+          <div class="hidden sm:block sm:ml-6 float-right">
+            <div class="flex">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Login</a>
             </div>
           </div>
         </div>
@@ -105,535 +127,51 @@
                                 Name
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Title
+                                Places
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Status
+                                Days
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Role
+                                Fare
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50"></th>
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
+                            <% for(let i=0; i<package.length; i++){ %>
+                              <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
                                     <div class="ml-4">
                                     <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
+                                        <%= package[i].packagename %>
                                     </div>
                                     </div>
                                 </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
+                                <div class="text-sm leading-5 text-gray-900"><%= package[i].places %></div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
+                                    <%= package[i].totaldays %>
                                 </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
+                                <%= package[i].packagefare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <form id="packagedetails" action="/packagedetails" method="POST">
+                                <input type="hidden" name="packageid" value=<%=package[i].packageid %> >
+                                <a href="#" onclick="document.getElementById('packagedetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
+                              </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                    </div>
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        Jane Cooper
-                                    </div>
-                                    <div class="text-sm leading-5 text-gray-500">
-                                        jane.cooper@example.com
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
-                            <tr>
-                              <td class="px-6 py-4 whitespace-no-wrap">
-                              <div class="flex items-center">
-                                  <div class="flex-shrink-0 h-10 w-10">
-                                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                  </div>
-                                  <div class="ml-4">
-                                  <div class="text-sm leading-5 font-medium text-gray-900">
-                                      Jane Cooper
-                                  </div>
-                                  <div class="text-sm leading-5 text-gray-500">
-                                      jane.cooper@example.com
-                                  </div>
-                                  </div>
-                              </div>
-                              </td>
-                              <td class="px-6 py-4 whitespace-no-wrap">
-                              <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                              <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                              </td>
-                              <td class="px-6 py-4 whitespace-no-wrap">
-                              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                  Active
-                              </span>
-                              </td>
-                              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                              Admin
-                              </td>
-                              <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                              </td>
-                          </tr>
-                          <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 h-10 w-10">
-                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                                </div>
-                                <div class="ml-4">
-                                <div class="text-sm leading-5 font-medium text-gray-900">
-                                    Jane Cooper
-                                </div>
-                                <div class="text-sm leading-5 text-gray-500">
-                                    jane.cooper@example.com
-                                </div>
-                                </div>
-                            </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap">
-                            <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                            <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Active
-                            </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                            Admin
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td class="px-6 py-4 whitespace-no-wrap">
-                          <div class="flex items-center">
-                              <div class="flex-shrink-0 h-10 w-10">
-                              <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                              </div>
-                              <div class="ml-4">
-                              <div class="text-sm leading-5 font-medium text-gray-900">
-                                  Jane Cooper
-                              </div>
-                              <div class="text-sm leading-5 text-gray-500">
-                                  jane.cooper@example.com
-                              </div>
-                              </div>
-                          </div>
-                          </td>
-                          <td class="px-6 py-4 whitespace-no-wrap">
-                          <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                          <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                          </td>
-                          <td class="px-6 py-4 whitespace-no-wrap">
-                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                              Active
-                          </span>
-                          </td>
-                          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                          Admin
-                          </td>
-                          <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                          </td>
-                      </tr>
-                      <tr>
-                        <td class="px-6 py-4 whitespace-no-wrap">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                            </div>
-                            <div class="ml-4">
-                            <div class="text-sm leading-5 font-medium text-gray-900">
-                                Jane Cooper
-                            </div>
-                            <div class="text-sm leading-5 text-gray-500">
-                                jane.cooper@example.com
-                            </div>
-                            </div>
-                        </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-no-wrap">
-                        <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                        <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-no-wrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Active
-                        </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                        Admin
-                        </td>
-                        <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-no-wrap">
-                      <div class="flex items-center">
-                          <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                          </div>
-                          <div class="ml-4">
-                          <div class="text-sm leading-5 font-medium text-gray-900">
-                              Jane Cooper
-                          </div>
-                          <div class="text-sm leading-5 text-gray-500">
-                              jane.cooper@example.com
-                          </div>
-                          </div>
-                      </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-no-wrap">
-                      <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                      <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-no-wrap">
-                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          Active
-                      </span>
-                      </td>
-                      <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                      Admin
-                      </td>
-                      <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                      </td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0 h-10 w-10">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                        </div>
-                        <div class="ml-4">
-                        <div class="text-sm leading-5 font-medium text-gray-900">
-                            Jane Cooper
-                        </div>
-                        <div class="text-sm leading-5 text-gray-500">
-                            jane.cooper@example.com
-                        </div>
-                        </div>
-                    </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-no-wrap">
-                    <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                    <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-no-wrap">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                    </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                    Admin
-                    </td>
-                    <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                </tr>
-                <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                  <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                      </div>
-                      <div class="ml-4">
-                      <div class="text-sm leading-5 font-medium text-gray-900">
-                          Jane Cooper
-                      </div>
-                      <div class="text-sm leading-5 text-gray-500">
-                          jane.cooper@example.com
-                      </div>
-                      </div>
-                  </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                  <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                  <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap">
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Active
-                  </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                  Admin
-                  </td>
-                  <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                  </td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                    </div>
-                    <div class="ml-4">
-                    <div class="text-sm leading-5 font-medium text-gray-900">
-                        Jane Cooper
-                    </div>
-                    <div class="text-sm leading-5 text-gray-500">
-                        jane.cooper@example.com
-                    </div>
-                    </div>
-                </div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm leading-5 text-gray-500">Optimization</div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                </span>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                Admin
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                </td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 whitespace-no-wrap">
-              <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                  </div>
-                  <div class="ml-4">
-                  <div class="text-sm leading-5 font-medium text-gray-900">
-                      Jane Cooper
-                  </div>
-                  <div class="text-sm leading-5 text-gray-500">
-                      jane.cooper@example.com
-                  </div>
-                  </div>
-              </div>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap">
-              <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-              <div class="text-sm leading-5 text-gray-500">Optimization</div>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Active
-              </span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-              Admin
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-              <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-              </td>
-          </tr>
-          <tr>
-            <td class="px-6 py-4 whitespace-no-wrap">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                </div>
-                <div class="ml-4">
-                <div class="text-sm leading-5 font-medium text-gray-900">
-                    Jane Cooper
-                </div>
-                <div class="text-sm leading-5 text-gray-500">
-                    jane.cooper@example.com
-                </div>
-                </div>
-            </div>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap">
-            <div class="text-sm leading-5 text-gray-900">Regional Paradigm Technician</div>
-            <div class="text-sm leading-5 text-gray-500">Optimization</div>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap">
-            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                Active
-            </span>
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-            Admin
-            </td>
-            <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-            </td>
-        </tr>
-        
-  
-                            <!-- More rows... -->
+                            <% } %>
                             </tbody>
-                        </table></div>
+                        </table>
+                      </div>
                         </div>
                     </div>
                     </div>

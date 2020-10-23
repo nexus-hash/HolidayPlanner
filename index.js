@@ -20,7 +20,9 @@ app.use(
         extended: true,
     })
 )
+
 app.use(cors());
+
 
 app.get('/login',(request,response)=>{
     response.render('login.ejs')
@@ -29,7 +31,24 @@ app.get('/signup',(req,res)=>{
     res.render('signup.ejs')
 });
 app.get('/option',(req,res)=>{
-    res.render('option.ejs')
+    pool.query("select packageid, packagename, totaldays, places, packagefare from package;",(error,response)=>{
+        if(error){
+            console.log(error)
+            return;
+        }
+        pkg = {package: response.rows};
+        console.log(pkg)
+        res.render('option.ejs',pkg)
+    })
+    
+})
+
+app.get("/packagedetails",(req,res)=>{
+    res.render('',pdetails)
+})
+
+app.get("/packagedetails",(req,res)=>{
+    res.render("purchase.ejs")
 })
 
 
@@ -43,7 +62,7 @@ app.post('/signup',(request,response)=>{
                 return;
             }
             if(res.rows.count==1){
-                res.render('login.ejs')
+                res.redirect('/login')
                 return;
             }
             pool.query("insert into users(password, firstname, middlename, lastname, address, dob, phonenumber, emailid) values ($1,$2,$3,$4,$5,$6,$7,$8)",[sha256(request.body.password),request.body.firstname,request.body.middlename,request.body.lastname,request.body.Address,request.body.dob,request.body.phno,request.body.email],function(error,respo){
@@ -57,8 +76,33 @@ app.post('/signup',(request,response)=>{
     }
 });
 
+app.post("/login",(reque,respos)=>{
+    pool.connect();
+    pool.query("select count(*)from users where emailid=$1",[reque.body.loginemail],function(err,res){
+        if(res.rows[0].count==0){
+            respos.redirect("/signup")
+            return;
+        }
+        pool.query("select password from users where emailid=$1",[reque.body.loginemail],function(error,respon){
+            if(respon.rows[0].password==sha256(reque.body.loginpassword)){
+                respos.redirect('/option');
+                return;
+            }
+        })
+    })
+})
+
+app.post("/packagedetails",(request,response)=>{
+    response.redirect('/packagedetails',request.body.packageid);
+})
+
+
 app.listen(config.port, () => {
     console.log(`App running on port ${config.port}.`)
 });
 
-export{app,sha256,tailwind};
+
+module.exports={
+    app: app
+}
+

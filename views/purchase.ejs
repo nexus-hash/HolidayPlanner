@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Sign In</title>
+    <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8;ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/build/tailwind.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  #try{
+      font-size:100px;
+      text-align: center;
+  }
+</style>
+</head>
+
+<body>
+    <!--<p class="px-4 py-4 text-sm text-cool-gray-800 font-bold">Get your welcome <a href="/userhello?name=Lol">here.</a></p>-->
+    <!--
+  Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
+  Read the documentation to get started: https://tailwindui.com/documentation
+-->
+<div class="flex flex-col h-screen bg-gray-500">
+<nav class="bg-gray-900">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-200 focus:text-gray-900 transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
+            <!-- Icon when menu is closed. -->
+            <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open. -->
+            <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0">
+            <img class="hidden lg:block h-8 w-auto" src="/images/logo.svg" alt="Holiday Planner logo">
+            
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Dashboard</a>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <!-- Profile dropdown -->
+          <div class="ml-3 relative">
+            <div>
+                <div class="hidden sm:inline-block sm:ml-6 float-right">
+                    <div class="flex">
+                      <div class="w3-dropdown-hover w3-right">
+                        <button class="w3-button w3-black">Welcome</button>
+                        <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+                          <a href="#" class="w3-bar-item w3-button">Bookings</a>
+                          <a href="#" class="w3-bar-item w3-button">Account Details</a>
+                          <a href="login.html" class="w3-bar-item w3-button">Sign Out</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+    <div class="hidden sm:hidden">
+      <div class="px-2 pt-2 pb-3">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+  <main class="flex-grow">
+    <section class="text-gray-700 bg-white body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            <h1 id="try">It's Travel Time!</h1>
+            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+              <h2 class="text-sm title-font text-gray-700 tracking-widest">Package</h2>
+              <h1 class="text-gray-800 text-3xl title-font font-medium mb-1">Location</h1>
+              
+              <p class="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
+              <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+                
+                <div class="flex ml-6 items-center">
+                  <span class="mr-3">Guests</span>
+                  <div class="relative">
+                    <select class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10">
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>4+</option>
+                    </select>
+                    <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex">
+                <span class="title-font font-medium text-2xl text-gray-900">50,000.00 Per</span>
+                <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Book</button>
+                <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</main>
+      <footer class="text-gray-500 bg-gray-900 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-green-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Holiday Planner</span>
+          </a>
+          <!--<p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2020 tailblocks —
+            <a href="https://twitter.com/knyttneve" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@knyttneve</a>
+          </p>-->
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a class="text-gray-600">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-600">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-600">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-600">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
+      </div>
+</body>
+</html>
