@@ -11,6 +11,9 @@ const pool = require('./pool');
 const { Connection } = require('pg');
 const { connect } = require('./pool');
 
+const clientsession=require('client-sessions');
+const session=require('express-session');
+
 
 app.use(express.static('static/public'));
 
@@ -22,6 +25,12 @@ app.use(
 )
 
 app.use(cors());
+
+app.use(session({
+    secret:"DBMS",
+    resave: false,
+    saveUninitialized: true
+}))
 
 
 app.get('/login',(request,response)=>{
@@ -37,17 +46,23 @@ app.get('/option',(req,res)=>{
             return;
         }
         pkg = {package: response.rows};
-        console.log(pkg)
-        res.render('option.ejs',pkg)
+        //console.log(pkg)
+        /*if(req.session.username){
+        res.render('option.ejs',pkg)}
+        else{
+            res.redirect('/login');
+        }*/
+        res.render('option.ejs',pkg);
     })
     
 })
 
-app.get("/packagedetails",(req,res)=>{
+/*app.get("/packagedetails",(req,res)=>{
     res.render('',pdetails)
-})
+})*/
 
 app.get("/packagedetails",(req,res)=>{
+    console.log(request);
     res.render("purchase.ejs")
 })
 
@@ -83,8 +98,9 @@ app.post("/login",(reque,respos)=>{
             respos.redirect("/signup")
             return;
         }
-        pool.query("select password from users where emailid=$1",[reque.body.loginemail],function(error,respon){
+        pool.query("select password,username from users where emailid=$1",[reque.body.loginemail],function(error,respon){
             if(respon.rows[0].password==sha256(reque.body.loginpassword)){
+                reque.session.username=respon.rows[0].username.toString();
                 respos.redirect('/option');
                 return;
             }
@@ -92,9 +108,10 @@ app.post("/login",(reque,respos)=>{
     })
 })
 
-app.post("/packagedetails",(request,response)=>{
-    response.redirect('/packagedetails',request.body.packageid);
-})
+/*app.post("/packagedetails",(request,response)=>{
+    console.log(request.body.packageid);
+    response.redirect('/packagedetails');
+})*/
 
 
 app.listen(config.port, () => {
