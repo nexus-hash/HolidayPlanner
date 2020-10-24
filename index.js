@@ -57,13 +57,78 @@ app.get('/option',(req,res)=>{
     
 })
 
+var pmh={
+    packagename:"",
+    packagefare:"",
+    packagedescription:"",
+    totaldays:"",
+    tours:
+    [
+        {
+            tourid:"",
+            tourname:"",
+            duration:"",
+            placesto:""
+        },
+        {
+            tourid:"",
+            tourname:"",
+            duration:"",
+            placesto:""
+        }
+    ],
+    flights:
+    [
+        {
+        flightnumber:"",
+        airlinename:"",
+        departure:"",
+        arrival:"",
+        departuretime:"",
+        arrivaltime:"",
+        filghtfare:""
+        },
+        {
+            flightnumber:"",
+            airlinename:"",
+            departure:"",
+            arrival:"",
+            departuretime:"",
+            arrivaltime:"",
+            filghtfare:""
+            }
+    ]
+}
+
 /*app.get("/packagedetails",(req,res)=>{
     res.render('',pdetails)
 })*/
-
+var packagen;
 app.get("/packagedetails",(req,res)=>{
-    console.log(request);
-    res.render("purchase.ejs")
+    var packagedata;
+    pool.connect();
+    pool.query("select packagename,packagefare,packagedescription,totaldays from package where packageid=$1",[packagen],(erro,resp)=>{
+        if(erro){
+            console.log(erro)
+        }
+        console.log(packagen);
+        packagedata=resp.rows[0];
+        pool.query("select tourid,tourname,tourdescription,placestobe,tourfare from tour where tourid in (select tourid from packagecontainstours where packageid = $1 );",[packagen],(err,respo)=>{
+            if(err){
+                console.log(err)
+            }
+            packagedata.tours=respo.rows;
+            console.log(packagedata);
+            pool.query("select flightnumber,airlinename,departure,arrival,departuretime,arrivaltime,flightfare from flight where flightnumber in (select flightnumber from packagecontainsflights where packageid = $1 );",[packagen],(er,respon)=>{
+                if(er){
+                    console.log(er);
+                }
+                packagedata.flights=respon.rows;
+                console.log(packagedata);
+            })
+        })
+    });
+    res.render("packagedetails.ejs",pmh)
 })
 
 
@@ -108,10 +173,11 @@ app.post("/login",(reque,respos)=>{
     })
 })
 
-/*app.post("/packagedetails",(request,response)=>{
+app.post("/packagedetails",(request,response)=>{
     console.log(request.body.packageid);
+    packagen=request.body.packageid;
     response.redirect('/packagedetails');
-})*/
+})
 
 
 app.listen(config.port, () => {

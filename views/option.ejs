@@ -162,7 +162,7 @@
                                 <%= package[i].packagefare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <form id="packagedetails" action="/packagedetails" method="GET">
+                                <form id="packagedetails" action="/packagedetails" method="POST">
                                 <input type="hidden" name="packageid" value=<%=package[i].packageid %> >
                                 <a href="#" onclick="document.getElementById('packagedetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
                               </form>
