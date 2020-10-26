@@ -39,7 +39,7 @@ app.get('/login',(request,response)=>{
 app.get('/signup',(req,res)=>{
     res.render('signup.ejs')
 });
-app.get('/option',(req,res)=>{
+app.get('/option/package',(req,res)=>{
     pool.query("select packageid, packagename, totaldays, places, packagefare from package;",(error,response)=>{
         if(error){
             console.log(error)
@@ -57,80 +57,50 @@ app.get('/option',(req,res)=>{
     
 })
 
-var pmh={
-    packagename:"",
-    packagefare:"",
-    packagedescription:"",
-    totaldays:"",
-    tours:
-    [
-        {
-            tourid:"",
-            tourname:"",
-            duration:"",
-            placesto:""
-        },
-        {
-            tourid:"",
-            tourname:"",
-            duration:"",
-            placesto:""
-        }
-    ],
-    flights:
-    [
-        {
-        flightnumber:"",
-        airlinename:"",
-        departure:"",
-        arrival:"",
-        departuretime:"",
-        arrivaltime:"",
-        filghtfare:""
-        },
-        {
-            flightnumber:"",
-            airlinename:"",
-            departure:"",
-            arrival:"",
-            departuretime:"",
-            arrivaltime:"",
-            filghtfare:""
-            }
-    ]
-}
-
-/*app.get("/packagedetails",(req,res)=>{
-    res.render('',pdetails)
-})*/
-var packagen;
-app.get("/packagedetails",(req,res)=>{
+app.get("/packagedetails",async function(req,res){
     var packagedata;
+    var packagegetid = req.query.packageid;
     pool.connect();
-    pool.query("select packagename,packagefare,packagedescription,totaldays from package where packageid=$1",[packagen],(erro,resp)=>{
-        if(erro){
-            console.log(erro)
-        }
-        console.log(packagen);
-        packagedata=resp.rows[0];
-        pool.query("select tourid,tourname,tourdescription,placestobe,tourfare from tour where tourid in (select tourid from packagecontainstours where packageid = $1 );",[packagen],(err,respo)=>{
-            if(err){
-                console.log(err)
+    pool.query("select packagename,packagefare,packagedescription,totaldays from package where packageid=$1",[packagegetid],async function (erro, resp) {
+            if (erro) {
+                console.log(erro);
             }
-            packagedata.tours=respo.rows;
-            console.log(packagedata);
-            pool.query("select flightnumber,airlinename,departure,arrival,departuretime,arrivaltime,flightfare from flight where flightnumber in (select flightnumber from packagecontainsflights where packageid = $1 );",[packagen],(er,respon)=>{
-                if(er){
-                    console.log(er);
+            packagedata = resp.rows[0];
+            pool.query("select tourid,tourname,tourdescription,placestobe,tourfare from tour where tourid in (select tourid from packagecontainstours where packageid = $1 );", [packagegetid],async function (err, respo) {
+                if (err) {
+                    console.log(err);
                 }
-                packagedata.flights=respon.rows;
-                console.log(packagedata);
-            })
-        })
-    });
-    res.render("packagedetails.ejs",pmh)
+                packagedata.tours = respo.rows;
+                pool.query("select flightnumber,airlinename,departure,arrival,departuretime,arrivaltime,flightfare from flight where flightnumber in (select flightnumber from packagecontainsflights where packageid = $1 );", [packagegetid],async function (er, respon) {
+                    if (er) {
+                        console.log(er);
+                    }
+                    packagedata.flights = respon.rows;
+                    res.render('packagedetails.ejs',packagedata);
+                });
+            });
+        });
 })
 
+app.get('/option/tours',function (req,res){
+    pool.connect();
+    pool.query("select  tourid, tourname,placefrom,duration,tourfare from tour",(err,resp)=>{
+        var toursdata = {tours: resp.rows};
+        res.render('touroption.ejs',toursdata);
+    })
+})
+
+app.get('/tourdetails',(req,res)=>{
+    var tourgetid=req.query.tourid;
+    pool.connect();
+    pool.query("",(err,resp)=>{
+
+    });
+})
+
+app.get('/signout',(req,res)=>{
+    res.render('signout.ejs');
+})
 
 app.post('/signup',(request,response)=>{
     if(request.body.password==request.body.conpassword){
@@ -150,7 +120,7 @@ app.post('/signup',(request,response)=>{
                     console.log(error)
                     return ;
                 }
-                response.redirect('/option');
+                response.redirect('/option/package');
             })
         })
     }
@@ -166,17 +136,11 @@ app.post("/login",(reque,respos)=>{
         pool.query("select password,username from users where emailid=$1",[reque.body.loginemail],function(error,respon){
             if(respon.rows[0].password==sha256(reque.body.loginpassword)){
                 reque.session.username=respon.rows[0].username.toString();
-                respos.redirect('/option');
+                respos.redirect('/option/package');
                 return;
             }
         })
     })
-})
-
-app.post("/packagedetails",(request,response)=>{
-    console.log(request.body.packageid);
-    packagen=request.body.packageid;
-    response.redirect('/packagedetails');
 })
 
 

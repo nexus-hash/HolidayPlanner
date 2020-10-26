@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Package <%= packagename %></title>
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8;ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/build/tailwind.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Tour <%= tourname %></title>
 <style>
   #try{
       font-size:100px;
@@ -16,33 +16,15 @@
 </head>
 
 <body>
-    <!--<p class="px-4 py-4 text-sm text-cool-gray-800 font-bold">Get your welcome <a href="/userhello?name=Lol">here.</a></p>-->
-    <!--
-  Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
-  Read the documentation to get started: https://tailwindui.com/documentation
--->
 <div class="flex flex-col h-screen bg-gray-500">
 <nav class="bg-gray-900">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          <!-- Mobile menu button-->
           <button class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-200 focus:text-gray-900 transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
-            <!-- Icon when menu is closed. -->
-            <!--
-              Heroicon name: menu
-  
-              Menu open: "hidden", Menu closed: "block"
-            -->
             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <!-- Icon when menu is open. -->
-            <!--
-              Heroicon name: x
-  
-              Menu open: "block", Menu closed: "hidden"
-            -->
             <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -51,7 +33,6 @@
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0">
             <img class="hidden lg:block h-8 w-auto" src="/images/logo.svg" alt="Holiday Planner logo">
-            
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
@@ -60,7 +41,6 @@
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <!-- Profile dropdown -->
           <div class="ml-3 relative">
             <div>
                 <div class="hidden sm:inline-block sm:ml-6 float-right">
@@ -70,7 +50,7 @@
                         <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                           <a href="#" class="w3-bar-item w3-button">Bookings</a>
                           <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                          <a href="#" class="w3-bar-item w3-button">Sign Out</a>
+                          <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
                         </div>
                       </div>
                     </div>
@@ -80,12 +60,6 @@
         </div>
       </div>
     </div>
-  
-    <!--
-      Mobile menu, toggle classes based on menu state.
-  
-      Menu open: "block", Menu closed: "hidden"
-    -->
     <div class="hidden sm:hidden">
       <div class="px-2 pt-2 pb-3">
         <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
@@ -98,19 +72,35 @@
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <h1 id="try">It's Travel Time!</h1>
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 class="text-sm title-font text-gray-700 tracking-widest"><%= packagename %></h2>
-              <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= packagedescription %></h1>
+              <h2 class="text-sm title-font text-gray-700 tracking-widest"><%= tourname %></h2>
+              <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= %></h1>
               <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= totaldays %></h1>
-              <% for(let i=0; i<tours.length; i++){ %>
+              <% for(let i=0; i<cab.length; i++){ %>
               <p class="leading-relaxed">
-                <%= tours[i].tourname %>
+                Cab Type: <%= cab[i].cabtype %>
               </p>
               <p class="leading-relaxed">
-                <%= tours[i].placestobe %>
+                Cab Locations: <%= cab[i].cablocation %>
+              </p>
+              <p class="leading-relaxed">
+                Fare: <%= cab[i].fare %>
               </p>
               <% } %>
+              <% for(let i=0; i<hotel.length; i++){ %>
+                <p class="leading-relaxed">
+                  Cab Type: <%= hotel[i].hotelname %>
+                </p>
+                <p class="leading-relaxed">
+                  Cab Locations: <%= hotel[i].hotellocation %>
+                </p>
+                <p class="leading-relaxed">
+                  Fare: <%= hotel[i].hotelfare %>
+                </p>
+                <p class="leading-relaxed">
+                  Fare: <%= hotel[i].noofbeds %>
+                </p>
+                <% } %>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-                
                 <div class="flex ml-6 items-center">
                   <span class="mr-3">Guests</span>
                   <div class="relative">
@@ -150,9 +140,6 @@
             </svg>
             <span class="ml-3 text-xl">Holiday Planner</span>
           </a>
-          <!--<p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2020 tailblocks —
-            <a href="https://twitter.com/knyttneve" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@knyttneve</a>
-          </p>-->
           <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             <a class="text-gray-600">
               <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
