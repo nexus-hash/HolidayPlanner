@@ -51,7 +51,7 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/package" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Packages</a>
+              <a href="/option/package" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-100 bg-purple-600 focus:outline-none focus:text-gray-200 focus:bg-purple-500 transition duration-150 ease-in-out">Packages</a>
             </div>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -61,17 +61,31 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/flights" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flights</a>
+              <a href="/option/flight" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flights</a>
             </div>
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/hotels" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Hotels</a>
+              <a href="/option/hotel" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Hotels</a>
             </div>
           </div>
-          <div class="hidden sm:block sm:ml-6 float-right">
-            <div class="flex">
-              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Login</a>
+          <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <!-- Profile dropdown -->
+            <div class="ml-3 relative">
+              <div>
+                  <div class="hidden sm:inline-block sm:ml-6 float-right">
+                      <div class="flex">
+                        <div class="w3-dropdown-hover w3-right">
+                          <button class="w3-button w3-black">User</button>
+                          <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+                            <a href="#" class="w3-bar-item w3-button">Bookings</a>
+                            <a href="/userprofile" class="w3-bar-item w3-button">Account Details</a>
+                            <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
             </div>
           </div>
         </div>
@@ -118,7 +132,7 @@
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div class="shadow overflow-hidden border-b border-gray-900 sm:rounded-lg">
                           <div class="name">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
@@ -176,7 +190,6 @@
                     </div>
                     </div>
                 </div>
-  
         </div>
       </section>
       

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Options</title>
+    <title>Flight</title>
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8;ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/build/tailwind.css" />
@@ -12,60 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <style> 
-      .name {
-    overflow:hidden;
-    overflow-y: scroll;
-    height: 500px;
-}
-.dropbtn {
-  background-color: white;
-  color: grey;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  float:right;
-}
-
-.dropdown {
-  float:right;
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: white;
-}
-
-  </style>
 </head>
 
 <body>
-<div class="flex flex-col h-screen bg-gray-900">
-<nav class="bg-gray-800">
+<div class="flex flex-col h-screen bg-gray-100">
+<nav class="bg-gray-900">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -74,12 +25,6 @@
             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <!-- Icon when menu is open. -->
-            <!--
-              Heroicon name: x
-
-              Menu open: "block", Menu closed: "hidden"
-            -->
             <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -97,12 +42,12 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/tours" type="button" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-100 bg-purple-600 focus:outline-none focus:text-gray-100 focus:bg-purple-600 transition duration-150 ease-in-out">Tours</a>
+              <a href="/option/tours" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Tours</a>
             </div>
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/flight" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flights</a>
+              <a href="/option/flight" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-100 bg-purple-600 focus:outline-none focus:text-gray-100 focus:bg-purple-400 transition duration-150 ease-in-out">Flights</a>
             </div>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -117,7 +62,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                   <a href="#" class="w3-bar-item w3-button">Bookings</a>
                   <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                  <a href="/login" class="w3-bar-item w3-button">Sign Out</a>
+                  <a href="login.html" class="w3-bar-item w3-button">Sign Out</a>
                 </div>
               </div>
             </div>
@@ -126,17 +71,6 @@
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <!-- Profile dropdown -->
           <div class="ml-3 relative">
-
-            <!--
-              Profile dropdown panel, show/hide based on dropdown state.
-  
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
             <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
               <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                 <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Your Profile</a>
@@ -148,12 +82,6 @@
         </div>
       </div>
     </div>
-  
-    <!--
-      Mobile menu, toggle classes based on menu state.
-  
-      Menu open: "block", Menu closed: "hidden"
-    -->
     <div class="hidden sm:hidden">
       <div class="px-2 pt-2 pb-3">
         <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">New User</a>
@@ -163,71 +91,69 @@
   <main class="flex-grow">
     <section class="text-gray-700 body-font relative">
         <div class="container py-8 mx-auto">
-                <div class="flex flex-col">
-                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                          <div class="name">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
-                            <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Name
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Places
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Days
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Fare
-                                </th>
-                                <th class="px-6 py-3 bg-gray-50"></th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                            <% for(let i=0; i<tours.length; i++){ %>
-                              <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">
-                                        <%= tours[i].tourname %>
-                                    </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900"><%= tours[i].placefrom %></div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    <%= tours[i].duration %>
-                                </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                <%= tours[i].tourfare %>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                  <form id="tourdetails" action="/tourdetails" method="GET">
-                                    <input type="hidden" name="tourid" value=<%=tours[i].tourid %> >
-                                    <a href="#" onclick="document.getElementById('tourdetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
-                                  </form>
-                                </td>
-                            </tr>
-                            <% } %>                                                         <!-- More rows... -->
-                            </tbody>
-                        </table>
-                      </div>
-                        </div>
+            <div class="lg:w-1/2 md:w-1/2 bg-gray-900 rounded-lg flex flex-col md:ml-auto md:mr-auto px-0 py-8 w-full mt-10 md:mt-0">
+          <div class="flex flex-col text-center w-full mb-4">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-200">Flights</h1>
+          </div>
+          <div class="lg:w-5/6 md:w-2/3 mx-auto">
+            <div class="">
+              <form action="" method="">
+                <label for="dep">Departing From: </label>
+                <input list="departure" name="dep" id="dep">
+                <datalist id="departure">
+                  <% for(let i=0; i<flight.length; i++){ %>
+                  <option value="<%= flight[i].departure %>"><% } %>
+                </datalist><br><br>
+                <label for="arr">Arriving At: </label>
+                <input list="arrival" name="arr" id="arr">
+                <datalist id="arrival">
+                  <% for(let i=0; i<flight.length; i++){ %>
+                  <option value="<%= flight[i].arrival %>"><% } %>
+                </datalist><br><br>
+              
+                  <div class="aligner">
+                    <div class="hope">
+                    <div class="p-2 w-1/3">
+                        <input class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="Passengers" type="number">
+                    </div></div>
+                    <div class="hope">
+                    <div class="p-2 w-1/2">
+                        <input class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="Date Of Travel" type="date">
+                    </div></div>
+                    <div class="p-2 w-full">
+                      <button class="flex mx-auto text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Search</button>
                     </div>
-                    </div>
-                </div>
-  
+                  </form>
+                  </div>
+                  <script>
+                    /* When the user clicks on the button,
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                      document.getElementById("myDropdown").classList.toggle("show");
+                    }
+                    function filterFunction() {
+                      var input, filter, ul, li, a, i;
+                      try{
+                      input = document.getElementById("myInput");
+                      filter = input.value.toUpperCase();
+                      div = document.getElementById("myDropdown");
+                      a = div.getElementsByTagName("a");
+                      for (i = 0; i < a.length; i++) {
+                        txtValue = a[i].textContent || a[i].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          a[i].style.display = "";
+                        } else {
+                          a[i].style.display = "none";
+                        }
+                      }}
+                      catch(error){console.log(error)}
+                    }
+                    </script>
+            </div>
+          </div>
+        </div>
         </div>
       </section>
-      
 </main>
       <footer class="text-gray-500 bg-gray-900 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
@@ -237,9 +163,6 @@
             </svg>
             <span class="ml-3 text-xl">Holiday Planner</span>
           </a>
-          <!--<p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2020 tailblocks —
-            <a href="https://twitter.com/knyttneve" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@knyttneve</a>
-          </p>-->
           <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             <a class="text-gray-600">
               <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">

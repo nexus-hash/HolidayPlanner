@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <style> 
+    <style>
       .name {
     overflow:hidden;
     overflow-y: scroll;
@@ -97,7 +97,7 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/tours" type="button" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-100 bg-purple-600 focus:outline-none focus:text-gray-100 focus:bg-purple-600 transition duration-150 ease-in-out">Tours</a>
+              <a href="/option/tours" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Tours</a>
             </div>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -117,7 +117,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                   <a href="#" class="w3-bar-item w3-button">Bookings</a>
                   <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                  <a href="/login" class="w3-bar-item w3-button">Sign Out</a>
+                  <a href="login.html" class="w3-bar-item w3-button">Sign Out</a>
                 </div>
               </div>
             </div>
@@ -127,16 +127,6 @@
           <!-- Profile dropdown -->
           <div class="ml-3 relative">
 
-            <!--
-              Profile dropdown panel, show/hide based on dropdown state.
-  
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
             <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
               <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                 <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Your Profile</a>
@@ -148,12 +138,6 @@
         </div>
       </div>
     </div>
-  
-    <!--
-      Mobile menu, toggle classes based on menu state.
-  
-      Menu open: "block", Menu closed: "hidden"
-    -->
     <div class="hidden sm:hidden">
       <div class="px-2 pt-2 pb-3">
         <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">New User</a>
@@ -175,10 +159,10 @@
                                 Name
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Places
+                                Location
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Days
+                                Availability
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Fare
@@ -187,36 +171,34 @@
                             </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                            <% for(let i=0; i<tours.length; i++){ %>
+                            
+                            <% for(let i=0; i<hotel.length; i++){ %>
                               <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap">
                                 <div class="flex items-center">
                                     <div class="ml-4">
                                     <div class="text-sm leading-5 font-medium text-gray-900">
-                                        <%= tours[i].tourname %>
+                                        <%= hotel[i].hotelname %>
                                     </div>
                                     </div>
                                 </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap">
-                                <div class="text-sm leading-5 text-gray-900"><%= tours[i].placefrom %></div>
+                                <div class="text-sm leading-5 text-gray-900"><%= hotel[i].hotellocation %></div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    <%= tours[i].duration %>
+                                    <%= hotel[i].availability %>
                                 </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                <%= tours[i].tourfare %>
+                                <%= hotel[i].fare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                  <form id="tourdetails" action="/tourdetails" method="GET">
-                                    <input type="hidden" name="tourid" value=<%=tours[i].tourid %> >
-                                    <a href="#" onclick="document.getElementById('tourdetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
-                                  </form>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Details</a>
                                 </td>
                             </tr>
-                            <% } %>                                                         <!-- More rows... -->
+                            <% } %>                                                   <!-- More rows... -->
                             </tbody>
                         </table>
                       </div>
@@ -224,10 +206,8 @@
                     </div>
                     </div>
                 </div>
-  
         </div>
       </section>
-      
 </main>
       <footer class="text-gray-500 bg-gray-900 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">

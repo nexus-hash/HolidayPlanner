@@ -14,7 +14,6 @@ const { connect } = require('./pool');
 const clientsession=require('client-sessions');
 const session=require('express-session');
 
-
 app.use(express.static('static/public'));
 
 app.use(bodyParser.json())
@@ -33,12 +32,27 @@ app.use(session({
 }))
 
 
+/*
+Rendering Login Page
+*/
 app.get('/login',(request,response)=>{
     response.render('login.ejs')
 })
+
+app.get('/forgotpassword',(request,response)=>{
+
+})
+
+/*
+Rendering Signup Page
+*/
 app.get('/signup',(req,res)=>{
     res.render('signup.ejs')
 });
+
+/*
+Rendering The HomePage or Option.ejs
+*/
 app.get('/option/package',(req,res)=>{
     pool.query("select packageid, packagename, totaldays, places, packagefare from package;",(error,response)=>{
         if(error){
@@ -57,6 +71,9 @@ app.get('/option/package',(req,res)=>{
     
 })
 
+/*
+Rendering PackageDetails Page
+*/
 app.get("/packagedetails",async function(req,res){
     var packagedata;
     var packagegetid = req.query.packageid;
@@ -82,6 +99,34 @@ app.get("/packagedetails",async function(req,res){
         });
 })
 
+app.get('/packagedetails/book',(request,response)=>{
+    var pkid=request.query.packageid;
+    pool.connect();
+    pool.query("insert into packagebooking(packageid, packagefromdate, paymentmethod, numberofpersons, bookingtime, username) values($1,$2,$3,$4,$5,$6);",[pkid,request.query.datebook,request.query.noofperson,getDateTime(),request.session.username],(err,res)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+        //pool.query("select flightnumber from ")
+    })
+})
+
+function getDateTime(){
+    //let nowdate=Date.now();
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    let hours = ("0"+(date_ob.getHours())).slice(-2);
+    let minutes = ("0"+(date_ob.getMinutes())).slice(-2);
+    let seconds = ("0"+(date_ob.getSeconds())).slice(-2); 
+    var currdate=year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+    return currdate;
+}
+
+/*
+Rendering Tours Page
+*/
 app.get('/option/tours',function (req,res){
     pool.connect();
     pool.query("select  tourid, tourname,placefrom,duration,tourfare from tour",(err,resp)=>{
@@ -98,8 +143,79 @@ app.get('/tourdetails',(req,res)=>{
     });
 })
 
+/*
+Rendering HotelSearch Page
+*/
+app.get('/option/hotel',(req,res)=>{
+    pool.connect();
+    pool.query("select cityname from statedetails where areacode in(select distinct Areacode from hotel)",(err,resp)=>{
+        res.render('hotelsearch.ejs',{hotel:resp.rows});
+    })
+})
+
+app.get('/searchhotel',(request,response)=>{
+    pool.connect();
+    pool.query("select hotelid,hotelname,hotellocation from hotel inner join statedetails on hotel.areacode = statedetails.areacode where cityname='Mumbai'",(err,res)=>{
+        if(err){
+            console.log(err)
+        }
+        for(let i=0;i<res.rows.length;i++){
+        pool.query("select hoteldetailsid,availability,hotelfare from hoteldetailed where noofbeds='1' and dateavail>='2020-11-05' and dateavail<='2020-11-08' and hotelid='H0001'",(erro,resp)=>{
+            if(erro){
+                console.log(erro);
+            }
+            var minavail= 12223333;
+            var hotelsearchdata;
+            for(let j=0;j<resp.rows.length;j++){
+                if(resp.rows[j].availability<minavail){
+                    minavail=resp.rows[j].availability;
+                }
+            }
+            res.rows[i].fare=resp.rows[0].hotelfare;
+            if(minavail==0){
+                res.rows[i].availability="Not Available";
+            }
+            else{
+                res.rows[i].availability=minavail;
+            }
+        })
+    }
+    setTimeout(()=>{hotelsearchdata={hotel:res.rows};
+    console.log(hotelsearchdata);
+    response.render('hoteloption.ejs',hotelsearchdata);
+    },2000)
+    
+    })
+})
+
+app.get('/option/flight',(request,response)=>{
+    pool.connect();
+    pool.query("select distinct arrival,departure from flight",(err,res)=>{
+        var airports={
+            flight:
+                res.rows
+            
+        }
+        response.render('flightsearch.ejs',airports);
+    })
+})
+
+
+app.get('/userprofile',(req,res)=>{
+    pool.connect();
+    var userid=req.session.username;
+    pool.query("select username,firstname,middlename,lastname,address,dob,phonenumber,emailid from users where username=$1",[userid],(error,response)=>{
+        var userdetail={user:response.rows}
+        res.render('profileview.ejs',userdetail)
+        console.log(userdetail);
+    })
+})
 app.get('/signout',(req,res)=>{
-    res.render('signout.ejs');
+    if(req.session.username){
+    res.render('signout.ejs');}
+    else{
+        res.redirect('/login')
+    }
 })
 
 app.post('/signup',(request,response)=>{
@@ -138,6 +254,9 @@ app.post("/login",(reque,respos)=>{
                 reque.session.username=respon.rows[0].username.toString();
                 respos.redirect('/option/package');
                 return;
+            }
+            else{
+                console.log("Wrong Password")
             }
         })
     })

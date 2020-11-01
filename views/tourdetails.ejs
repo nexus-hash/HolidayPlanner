@@ -50,7 +50,7 @@
                         <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                           <a href="#" class="w3-bar-item w3-button">Bookings</a>
                           <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                          <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
+                          <a href="#" class="w3-bar-item w3-button">Sign Out</a>
                         </div>
                       </div>
                     </div>
@@ -75,31 +75,26 @@
               <h2 class="text-sm title-font text-gray-700 tracking-widest"><%= tourname %></h2>
               <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= %></h1>
               <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= totaldays %></h1>
-              <% for(let i=0; i<cab.length; i++){ %>
-              <p class="leading-relaxed">
-                Cab Type: <%= cab[i].cabtype %>
-              </p>
-              <p class="leading-relaxed">
-                Cab Locations: <%= cab[i].cablocation %>
-              </p>
-              <p class="leading-relaxed">
-                Fare: <%= cab[i].fare %>
-              </p>
-              <% } %>
-              <% for(let i=0; i<hotel.length; i++){ %>
-                <p class="leading-relaxed">
-                  Cab Type: <%= hotel[i].hotelname %>
-                </p>
-                <p class="leading-relaxed">
-                  Cab Locations: <%= hotel[i].hotellocation %>
-                </p>
-                <p class="leading-relaxed">
-                  Fare: <%= hotel[i].hotelfare %>
-                </p>
-                <p class="leading-relaxed">
-                  Fare: <%= hotel[i].noofbeds %>
-                </p>
-                <% } %>
+                <table class="w3-table-all w3-card-4">
+                  <tr>
+                    <th>Cabs</th>
+                    <% for(let i=0; i<cab.length; i++){ %>
+                      <td><%= cab[i].cablocation %><br><%= cab[i].cabtype %><br><%= cab[i].fare %></td>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <th>Hotels</th>
+                    <% for(let i=0; i<hotel.length; i++){ %>
+                      <td><%= hotel[i].hotellocation %><br><%= hotel[i].hotelname %><br><%= hotel[i].hotelfare %><br><%= hotel[i].noofbeds %></td>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <th>Flights</th>
+                    <% for(let i=0; i<cab.length; i++){ %>
+                      <td><%= cab[i].cablocation %><br><%= cab[i].cabtype %><br><%= cab[i].fare %></td>
+                    <% } %>
+                  </tr>
+                </table>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                 <div class="flex ml-6 items-center">
                   <span class="mr-3">Guests</span>
@@ -119,7 +114,7 @@
                 </div>
               </div>
               <div class="flex">
-                <span class="title-font font-medium text-2xl text-gray-900"><%= packagefare %></span>
+                <span class="title-font font-medium text-2xl text-gray-900"><%= tourfare %></span>
                 <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Book</button>
                 <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
