@@ -117,7 +117,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                   <a href="#" class="w3-bar-item w3-button">Bookings</a>
                   <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                  <a href="login.html" class="w3-bar-item w3-button">Sign Out</a>
+                  <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
                 </div>
               </div>
             </div>
@@ -195,7 +195,14 @@
                                 <%= hotel[i].fare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Details</a>
+                                  <form id="bookhotel" action="/bookhotel" method="GET">
+                                    <input type="hidden" name="hotelid" value=<%= hotel[i].hotelid %> >
+                                    <input type="hidden" name="hotelavailability" value=<%= hotel[i].availability %> >
+                                    <input type="hidden" name="hotelfare" value=<%= hotel[i].fare %> >
+                                    <input type="hidden" name="hotelcheckin" value=<%= hotel[i].checkin %> >
+                                    <input type="hidden" name="hotelcheckout" value=<%= hotel[i].checkout %> >
+                                    <a href="#" onclick="document.getElementById('bookhotel').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Book</a>
+                                  </form>
                                 </td>
                             </tr>
                             <% } %>                                                   <!-- More rows... -->

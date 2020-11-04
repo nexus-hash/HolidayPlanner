@@ -139,7 +139,7 @@ app.get('/tourdetails',(req,res)=>{
     var tourgetid=req.query.tourid;
     pool.connect();
     pool.query("",(err,resp)=>{
-
+        
     });
 })
 
@@ -155,12 +155,12 @@ app.get('/option/hotel',(req,res)=>{
 
 app.get('/searchhotel',(request,response)=>{
     pool.connect();
-    pool.query("select hotelid,hotelname,hotellocation from hotel inner join statedetails on hotel.areacode = statedetails.areacode where cityname='Mumbai'",(err,res)=>{
+    pool.query("select hotelid,hotelname,hotellocation from hotel inner join statedetails on hotel.areacode = statedetails.areacode where cityname=$1",[request.query.loc],(err,res)=>{
         if(err){
             console.log(err)
         }
         for(let i=0;i<res.rows.length;i++){
-        pool.query("select hoteldetailsid,availability,hotelfare from hoteldetailed where noofbeds='1' and dateavail>='2020-11-05' and dateavail<='2020-11-08' and hotelid='H0001'",(erro,resp)=>{
+        pool.query("select hoteldetailsid,availability,hotelfare from hoteldetailed where noofbeds=$1 and dateavail>=$2 and dateavail<=$3 and hotelid=$4",[request.query.totalbeds,request.query.checkin,request.query.checkout,res.rows[i].hotelid],(erro,resp)=>{
             if(erro){
                 console.log(erro);
             }
@@ -178,14 +178,21 @@ app.get('/searchhotel',(request,response)=>{
             else{
                 res.rows[i].availability=minavail;
             }
+            res.rows[i].checkin=request.query.checkin;
+            res.rows[i].checkout=request.query.checkout;
         })
     }
     setTimeout(()=>{hotelsearchdata={hotel:res.rows};
+    request.query={};
     console.log(hotelsearchdata);
     response.render('hoteloption.ejs',hotelsearchdata);
-    },2000)
+    },3000)
     
     })
+})
+
+app.get('/bookhotel',(request,response)=>{
+    pool.connect();
 })
 
 app.get('/option/flight',(request,response)=>{
@@ -198,6 +205,15 @@ app.get('/option/flight',(request,response)=>{
         }
         response.render('flightsearch.ejs',airports);
     })
+})
+
+app.get('/option/searchflight',(request,response)=>{
+    var searchquery=request.query;
+    pool.connect();
+    pool.query("select flight.flightnumber,airlinename,departuretime,arrivaltime,flightfare,departure,arrival from flight inner join flightavailability on flight.flightnumber = flightavailability.flightnumber WHERE departure = $1 and arrival=$2 and dates=$3",[searchquery.dep,searchquery.arr,searchquery.traveldate],(err,res)=>{
+        var searchresult={flight:res.rows};
+        response.render('flightoption.ejs',searchresult)
+    });
 })
 
 
