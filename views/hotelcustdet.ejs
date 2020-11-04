@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8;ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/build/tailwind.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Details</title>
+<style>
+  #try{
+      font-size:100px;
+      text-align: center;
+  }
+</style>
+</head>
+
+<body>
+    <header class="bg-blue-200">
+        <div class="lg:flex lg:items-center lg:justify-between">
+        <div class="flex-1 min-w-0">
+          <h2 class="text-2xl inline font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            <div class="inline">
+                <div class="">
+                  <img class="lg:inline h-8 w-auto" src="/images/logo.svg" alt="Holiday Planner logo">
+                </div></div>
+          </h2>
+          
+        </div>
+        <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap">
+          <div class="mt-2 flex items-center text-sm leading-5 text-gray-800">
+            We Need To Confirm Your Identity
+          </div>
+        </div>
+        <div class="mt-5 flex lg:mt-0 lg:ml-4">
+          <span class="sm:ml-3 shadow-sm rounded-md">
+            <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out">
+              Cancel
+            </button>
+          </span>
+        </div>
+      </div>
+</header><br><br>
+    <div>
+        <% for(let i=0; i<noofbeds; i++){ %>
+      <div class="mt-10 sm:mt-0">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+          <div class="md:col-span-1">
+            <div class="px-4 sm:px-0">
+              <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+              <p class="mt-1 text-sm leading-5 text-gray-600">
+                  Customer: <%= i+1 %>/<%= noofbeds %><br>
+                USE DETAILS MENTIONED ON IDENTIFICATION CARDS.<br>eg. ADHAAR CARD, PAN CARD, PASSPORT etc.
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 md:mt-0 md:col-span-2">
+            <form action="/bookhotel" method="GET">
+              <div class="shadow overflow-hidden sm:rounded-md">
+                <div class="px-4 py-5 bg-white sm:p-6">
+                  <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
+                      <input id="first_name"name="firstname" class="mt-1 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-500 bg-gray-100 text-gray-800" required>
+                    </div>
+      
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last name</label>
+                      <input id="last_name" name="lastname"class="mt-1 form-input block w-full border-gray-500 bg-gray-100 text-gray-800 transition duration-150 ease-in-out sm:text-sm sm:leading-5" required>
+                    </div>
+                    <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                      <label for="dob" class="block text-sm font-medium leading-5 text-gray-700">Date Of Birth</label>
+                      <input id="dob" class="mt-1 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-500 bg-gray-100 text-gray-800" type="date" required>
+                    </div>
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label for="gender" class="block text-sm font-medium leading-5 text-gray-700">Gender</label>
+                      <select id="country" class="mt-1 block form-select w-full py-2 px-3 border-gray-500 bg-gray-100 text-gray-800 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <option>M</option>
+                        <option>F</option>
+                        <option>T</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <button class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+                    Save
+                  </button>
+                </div>
+                <% if(i == noofbeds-1){ %>
+                  <input type="hidden" name="hotelid" value=<%= hotelid %> >
+                  <input type="hidden" name="noofbeds" value=<%= noofbeds %>>
+                  <input type="hidden" name="hotelavailability" value=<%= hotelavailability %> >
+                  <input type="hidden" name="hotelfare" value=<%= hotelfare %> >
+                  <input type="hidden" name="hotelcheckin" value=<%= hotelcheckin %> >
+                  <input type="hidden" name="hotelcheckout" value=<%= hotelcheckout %> >
+                  <input type="hidden" name="hotelname" value=<%= hotelname %> >
+                <div class="px-4 py-3 bg-gray-50 sm:px-6">
+                    <button type="submit" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+                      Confirm Booking
+                    </button>
+                  </div>
+                <% } %>
+              </div>
+              <% } %>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="hidden sm:block">
+        <div class="py-5">
+          <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+      </div>
+      </div><br><br><br><br><br><br><br><br><br><br><br><br>
+      <footer class="text-gray-700 body-font bg-blue-300">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Holiday Planner</span>
+          </a>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
+</body>
+</html>

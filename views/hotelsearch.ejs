@@ -16,11 +16,10 @@
 
 <body>
 <div class="flex flex-col h-screen bg-gray-100">
-<nav class="bg-gray-900">
+  <nav class="bg-gray-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          <!-- Mobile menu button-->
           <button class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-700 hover:bg-gray-300 focus:outline-none focus:bg-gray-200 focus:text-gray-900 transition duration-150 ease-in-out" aria-label="Main menu" aria-expanded="false">
             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -33,58 +32,47 @@
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0">
             <img class="hidden lg:block h-8 w-auto" src="/images/logo.svg" alt="Holiday Planner logo">
-
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class=" sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/package" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Packages</a>
+              <a href="/option/package" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Package</a>
             </div>
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class=" sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/tours" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Tours</a>
+              <a href="/option/tours" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Tour</a>
             </div>
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class=" sm:block sm:ml-6">
             <div class="flex">
-              <a href="/option/flight" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flights</a>
+              <a href="/option/flight" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-white focus:outline-none focus:text-gray-900 focus:bg-gray-400 transition duration-150 ease-in-out">Flight</a>
             </div>
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class=" sm:block sm:ml-6">
             <div class="flex">
-              <a href="" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-900 bg-purple-600 focus:outline-none focus:text-gray-900 focus:bg-purple-400 transition duration-150 ease-in-out">Hotels</a>
-            </div>
-          </div>
-          <div class="hidden sm:inline-block sm:ml-6 float-right">
-            <div class="flex">
-              <div class="w3-dropdown-hover w3-right">
-                <button class="w3-button w3-black">User</button>
-                <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-                  <a href="#" class="w3-bar-item w3-button">Bookings</a>
-                  <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                  <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
-                </div>
-              </div>
+              <a href="/option/hotel" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-100 bg-purple-600 focus:outline-none focus:text-gray-200 focus:bg-purple-400 transition duration-150 ease-in-out">Hotel</a>
             </div>
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <!-- Profile dropdown -->
           <div class="ml-3 relative">
-            <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
-              <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Your Profile</a>
-                <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Settings</a>
-                <a href="#" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Sign out</a>
+
+            <div class="w3-dropdown-hover w3-right">
+              <button class="w3-button w3-black">User</button>
+              <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+                <a href="#" class="w3-bar-item w3-button">Bookings</a>
+                <a href="" class="w3-bar-item w3-button">Account Details</a>
+                <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="hidden sm:hidden">
       <div class="px-2 pt-2 pb-3">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">New User</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</a>
       </div>
     </div>
   </nav>
@@ -99,7 +87,7 @@
             <div class="">
               <form action="/searchhotel" method="GET">
                 <label for="loc">Hotels At: </label>
-                <input list="location" name="loc" id="loc">
+                <input list="location" name="loc" id="loc" required>
                 <datalist id="location">
                   <% for(let i=0; i<hotel.length; i++){ %>
                   <option value="<%= hotel[i].cityname %>"><% } %>
@@ -108,15 +96,15 @@
                   <div class="aligner">
                     <div class="hope">
                     <div class="p-2 w-1/3">
-                        <input name="totalbeds" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="Beds" type="number">
+                        <input name="totalbeds" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="Beds" type="number" max="3" min="1" required>
                     </div></div>
                     <div class="hope">
                         <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCheck In&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCheck Out</p>
                     <div class="p-2 w-1/2 float-left">
-                        <input name="checkin" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="DOB" type="date">
+                        <input name="checkin" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="DOB" type="date" required>
                     </div>
                     <div class="p-2 w-1/2 float-left">
-                        <input name="checkout" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="DOB" type="date">
+                        <input name="checkout" class="w-full bg-gray-100 rounded border text-black border-gray-100 focus:outline-none focus:border-purple-500 text-base px-2 py-2 font-mono" placeholder="DOB" type="date" re>
                     </div></div>
                     <div class="p-2 w-full">
                         <button type="submit" class="flex mx-auto text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Book</button>

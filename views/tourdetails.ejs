@@ -84,14 +84,8 @@
                   </tr>
                   <tr>
                     <th>Tour Guide</th>
-                    <% for(let i=0; i<hotel.length; i++){ %>
-                      <td><%= hotel[i].hotellocation %><br><%= hotel[i].hotelname %><br><%= hotel[i].hotelfare %><br><%= hotel[i].noofbeds %></td>
-                    <% } %>
-                  </tr>
-                  <tr>
-                    <th>Flights</th>
-                    <% for(let i=0; i<cab.length; i++){ %>
-                      <td><%= cab[i].cablocation %><br><%= cab[i].cabtype %><br><%= cab[i].fare %></td>
+                    <% for(let i=0; i<guide.length; i++){ %>
+                      <td><%= guide[i].knownlanguage %><br><%= hotel[i].hotelname %><br><%= hotel[i].hotelfare %><br><%= hotel[i].noofbeds %></td>
                     <% } %>
                   </tr>
                 </table>
