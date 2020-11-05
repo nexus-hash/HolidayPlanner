@@ -238,20 +238,25 @@ app.get('/getcustomerdetails',(request,response)=>{
     })
 })
 
-app.get('/bookhotel',(request,response)=>{
+app.get('/bookhotel',async (request,response)=>{
     var hoteld= request.query;
     console.log(hoteld)
     pool.connect();
-    /*pool.query("begin;START TRANSACTION ;insert into hotelbooking (username, hotelid, fromdate, todate, paymenmethod, amountpaid, personname, persongender, persondob) values($1,$2,$3,$4,$5,$6,$7,$8,$9);update hoteldetailed set availability=availability-1 where dateavail>=$10 and dateavail<=$11 and noofbeds=$12 and hotelid=$13;commit;end;",[request.session.username,hoteld.hotelid,hoteld.hotelcheckin,hoteld.hotelcheckout,null,hoteld.hotelfare,hoteld.hotelname,hoteld.gender,hoteld.dob,hoteld.checkin,hoteld.checkout,hoteld.noofbeds,hoteld.hoteld],(err,res)=>{
-        if(err){
-            console.log(err);
-            return;
-        }
-        else{
-            console.log("Booking Successful");
-            //response.render("")
-        }
-    })*/
+    try {
+        await pool.query("BEGIN");
+        const querytext2="insert into hotelbooking (username, hotelid, fromdate, todate, paymenmethod, amountpaid, personname, persongender, persondob,bookingtime) values($1,$2,$3,$4,$5,$6,$7,$8,$9)";
+        const querytext1="update hoteldetailed set availability=availability-1 where dateavail>=$1 and dateavail<=$2 and noofbeds=$3 and hotelid=$4";
+        const res=await pool.query(querytext1,[hoteld.hotelcheckin,hoteld.hotelcheckout,hoteld.noofbeds,hoteld.hotelid]);
+
+        const insertvalues= [request.session.username,hoteld.hotelid,hoteld.hotelcheckin,hoteld.hotelcheckout,null,hoteld.hotelfare,hoteld.hotelname,hoteld.Gender,hoteld.dob,getDateTime()];
+        await pool.query(querytext2,insertvalues)
+        await pool.query("COMMIT")
+    } catch (error) {
+        await pool.query("ROLLBACK")
+    }finally{
+        console.log("Booked Sucessfully");
+
+    }
 })
 
 app.get('/option/flight',(request,response)=>{

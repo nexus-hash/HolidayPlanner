@@ -70,22 +70,17 @@
                     </div>
                     <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label for="dob" class="block text-sm font-medium leading-5 text-gray-700">Date Of Birth</label>
-                      <input id="dob" class="mt-1 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-500 bg-gray-100 text-gray-800" type="date" required>
+                      <input id="dob" name="dob"class="mt-1 form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-gray-500 bg-gray-100 text-gray-800" type="date" required>
                     </div>
                     <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                       <label for="gender" class="block text-sm font-medium leading-5 text-gray-700">Gender</label>
-                      <select id="country" class="mt-1 block form-select w-full py-2 px-3 border-gray-500 bg-gray-100 text-gray-800 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                      <select id="country" name="Gender"class="mt-1 block form-select w-full py-2 px-3 border-gray-500 bg-gray-100 text-gray-800 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                         <option>M</option>
                         <option>F</option>
                         <option>T</option>
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
-                    Save
-                  </button>
                 </div>
                 <% if(i == noofbeds-1){ %>
                   <input type="hidden" name="hotelid" value=<%= hotelid %> >
