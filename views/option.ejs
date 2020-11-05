@@ -68,7 +68,7 @@
             <div class="w3-dropdown-hover w3-right">
               <button class="w3-button w3-black">User</button>
               <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-                <a href="#" class="w3-bar-item w3-button">Bookings</a>
+                <a href="/userbookings" class="w3-bar-item w3-button">Bookings</a>
                 <a href="" class="w3-bar-item w3-button">Account Details</a>
                 <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
               </div>
@@ -134,9 +134,9 @@
                                 <%= package[i].packagefare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <form id="packagedetails" action="/packagedetails" method="GET">
+                                <form id="packagedetails<%= i %>" action="/packagedetails" method="GET">
                                 <input type="hidden" name="packageid" value=<%=package[i].packageid %> >
-                                <a href="#" onclick="document.getElementById('packagedetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
+                                <a href="#" onclick="document.getElementById('packagedetails<%= i %>').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Details</a>
                               </form>
                                 </td>
                             </tr>

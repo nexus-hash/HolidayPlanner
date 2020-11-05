@@ -176,7 +176,7 @@
                                 <%= hotel[i].fare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                  <form id="hoteldetails" action="/hoteldetails" method="GET">
+                                  <form id="hoteldetails<%= i %>" action="/hoteldetails" method="GET">
                                     <input type="hidden" name="hotelid" value=<%= hotel[i].hotelid %> >
                                     <input type="hidden" name="noofbeds" value=<%= hotel[i].noofbeds %>>
                                     <input type="hidden" name="hotelavailability" value=<%= hotel[i].availability %> >
@@ -184,7 +184,7 @@
                                     <input type="hidden" name="hotelcheckin" value=<%= hotel[i].checkin %> >
                                     <input type="hidden" name="hotelcheckout" value=<%= hotel[i].checkout %> >
                                     <input type="hidden" name="hotelname" value=<%= hotel[i].hotelname %> >
-                                    <a href="#" onclick="document.getElementById('hoteldetails').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Book</a>
+                                    <a href="#" onclick="document.getElementById('hoteldetails<%= i %>').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Book</a>
                                   </form>
                                 </td>
                             </tr>

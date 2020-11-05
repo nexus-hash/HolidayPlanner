@@ -50,7 +50,7 @@
                         <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
                           <a href="#" class="w3-bar-item w3-button">Bookings</a>
                           <a href="#" class="w3-bar-item w3-button">Account Details</a>
-                          <a href="#" class="w3-bar-item w3-button">Sign Out</a>
+                          <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
                         </div>
                       </div>
                     </div>
@@ -74,18 +74,18 @@
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-700 tracking-widest"><%= tourname %></h2>
               <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= %></h1>
-              <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= totaldays %></h1>
+              <h1 class="text-gray-800 text-3xl title-font font-medium mb-1"><%= duration %></h1>
                 <table class="w3-table-all w3-card-4">
                   <tr>
                     <th>Cabs</th>
                     <% for(let i=0; i<cab.length; i++){ %>
-                      <td><%= cab[i].cablocation %><br><%= cab[i].cabtype %><br><%= cab[i].fare %></td>
+                      <td><%= cab[i].cabtype %><br><%= cab[i].cabfare %></td>
                     <% } %>
                   </tr>
                   <tr>
                     <th>Tour Guide</th>
-                    <% for(let i=0; i<guide.length; i++){ %>
-                      <td><%= guide[i].knownlanguage %><br><%= hotel[i].hotelname %><br><%= hotel[i].hotelfare %><br><%= hotel[i].noofbeds %></td>
+                    <% for(let i=0; i<tourguide.length; i++){ %>
+                      <td><%= tourguide[i].knownlanguage %><br><%= tourguide[i].feeamount %></td>
                     <% } %>
                   </tr>
                 </table>

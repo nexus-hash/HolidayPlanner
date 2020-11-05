@@ -137,11 +137,12 @@ app.get('/option/tours',function (req,res){
 
 app.get('/option/tourdetails',(req,res)=>{
     var tourgetid=req.query.tourid;
+    console.log(tourgetid)
     var tourdetailsdata={};
     pool.connect();
     pool.query("select *from tour where tourid=$1",[tourgetid],(erro,respo)=>{
         tourdetailsdata=respo.rows[0];
-        pool.query("select cabid,cabtype,cablocation,availability,cabfare from cab where cabid in(select cabid from tourcontainscab where tourid=$1)",[tourgetid],(err,resp)=>{
+        pool.query("select distinct cabtype,cabfare from cab where cabid in(select cabid from tourcontainscab where tourid=$1)",[tourgetid],(err,resp)=>{
             if(err){
                 console.log(err);
                 return;
@@ -242,20 +243,26 @@ app.get('/bookhotel',async (request,response)=>{
     var hoteld= request.query;
     console.log(hoteld)
     pool.connect();
+    var errooccured=false;
+    var personname=hoteld.firstname+" "+hoteld.lastname;
     try {
         await pool.query("BEGIN");
-        const querytext2="insert into hotelbooking (username, hotelid, fromdate, todate, paymenmethod, amountpaid, personname, persongender, persondob,bookingtime) values($1,$2,$3,$4,$5,$6,$7,$8,$9)";
-        const querytext1="update hoteldetailed set availability=availability-1 where dateavail>=$1 and dateavail<=$2 and noofbeds=$3 and hotelid=$4";
-        const res=await pool.query(querytext1,[hoteld.hotelcheckin,hoteld.hotelcheckout,hoteld.noofbeds,hoteld.hotelid]);
-
-        const insertvalues= [request.session.username,hoteld.hotelid,hoteld.hotelcheckin,hoteld.hotelcheckout,null,hoteld.hotelfare,hoteld.hotelname,hoteld.Gender,hoteld.dob,getDateTime()];
-        await pool.query(querytext2,insertvalues)
-        await pool.query("COMMIT")
+        const res=await pool.query("update hoteldetailed set availability=availability-1 where dateavail>=$1 and dateavail<=$2 and noofbeds=$3 and hotelid=$4",[hoteld.hotelcheckin,hoteld.hotelcheckout,hoteld.noofbeds,hoteld.hotelid]);
+        const datetime= await getDateTime();
+        
+        await pool.query("insert into hotelbooking (username, hotelid, fromdate, todate, paymenmethod, amountpaid, personname, persongender, persondob,bookingtime) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[request.session.username,hoteld.hotelid,hoteld.hotelcheckin,hoteld.hotelcheckout,null,hoteld.hotelfare,personname,hoteld.Gender,hoteld.dob,getDateTime()])
+        await pool.query("COMMIT");
     } catch (error) {
-        await pool.query("ROLLBACK")
+        await pool.query("ROLLBACK");
+        console.log("Rolled Back");
+        errooccured=true;
     }finally{
-        console.log("Booked Sucessfully");
-
+        if(errooccured){
+            response.render('servererror.ejs');
+        }
+        else{
+            response.render('booked.ejs');
+        }
     }
 })
 
@@ -279,7 +286,6 @@ app.get('/option/searchflight',(request,response)=>{
             console.log(err)
         }
         var searchresult={flight:res.rows};
-        console.log(searchresult)
         response.render('flightoption.ejs',searchresult)
     });
 })
@@ -293,6 +299,56 @@ app.get('/userprofile',(req,res)=>{
         res.render('profileview.ejs',userdetail)
         console.log(userdetail);
     })
+})
+app.get('/userbookings',(request,response)=>{
+    if(request.session.username){
+    var username=request.session.username;
+    var userdetail;
+    pool.connect();
+    pool.query("select username,firstname,middlename,lastname,address,to_char(dob,'YYYY-MM-DD HH24:MI:SS') as dob,phonenumber,emailid from users where username=$1",[username],(err,res)=>{
+        if(err){
+            response.redirect('/servererror');
+            console.log(err);
+        }
+        userdetail=res.rows[0];
+        pool.query("select from packagebooking where username=$1",[username],(erro,resp)=>{
+            if(erro){
+                response.redirect('/servererror');
+                console.log(erro)
+            }
+            userdetail.packagebooking=resp.rows;
+            pool.query("select *from tourbooking where username=$1",[username],(error,respo)=>{
+                if(error){
+                    response.redirect('/servererror');
+                    console.log(error);
+                }
+                userdetail.tourbooking=respo.rows;
+                pool.query("select flightbookingid, username, flightnumber, to_char(bookingtime,'YYYY-MM-DD HH24:MI:SS') as bookingtime, paymentmethod, personname, persongender,to_char( persondob,'YYYY-MM-DD HH24:MI:SS') as persondob, amountpaid from flightbooking where username=$1",[username],(error1,respon)=>{
+                    if(error1){
+                        response.redirect('/servererror')
+                        console.log(error1)
+                    }
+                    userdetail.flightbooking=respon.rows;
+                    pool.query("select hotelbookingid, username, hotelid, to_char(fromdate,'YYYY-MM-DD HH24:MI:SS') as fromdate,to_char(todate,'YYYY-MM-DD HH24:MI:SS') as todate, paymenmethod, amountpaid, personname, persongender, to_char(persondob,'YYYY-MM-DD HH24:MI:SS') as persondob,to_char( bookingtime,'YYYY-MM-DD HH24:MI:SS')as bookingtime from hotelbooking where username=$1",[username],(error2,respons)=>{
+                        if(error2){
+                            response.redirect('/servererror');
+                            console.log(error2);
+                        }
+                        userdetail.hotelbooking=respons.rows;
+                        response.render('userbookings.ejs',userdetail);
+                    })
+                })
+            })
+        })
+    })
+    }
+    else{
+        response.redirect('/login')
+    }
+})
+
+app.get('/servererror',(request,response)=>{
+    response.render('servererror.ejs');
 })
 app.get('/signout',(req,res)=>{
     if(req.session.username){
