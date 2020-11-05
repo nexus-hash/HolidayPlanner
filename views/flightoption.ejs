@@ -176,7 +176,16 @@
                                 <%= flight[i].flightfare %>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Details</a>
+                                  <form id="getflightcustomerdetails<%= i %>" action="/getflightcustomerdetails" method="GET">
+                                    <input type="hidden" name="flightnumber" value=<%= flight[i].flightnumber %> >
+                                    <input type="hidden" name="departuretime" value=<%= flight[i].departuretime %> >
+                                    <input type="hidden" name="departure" value=<%= flight[i].departure %> >
+                                    <input type="hidden" name="arrival" value=<%= flight[i].arrival %> >
+                                    <input type="hidden" name="departuredate" value=<%= traveldate %> >
+                                    <input type="hidden" name="noofperson" value=<%= noofperson %> >
+                                    <input type="hidden" name="airlinename" value=<%= flight[i].airlinename %> >
+                                <a href="#" onclick="document.getElementById('getflightcustomerdetails<%= i %>').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Book</a>
+                                </form>
                                 </td>
                             </tr>
                             <% } %>                                                         <!-- More rows... -->

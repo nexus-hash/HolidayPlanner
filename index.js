@@ -247,7 +247,7 @@ app.get('/bookhotel',async (request,response)=>{
     var personname=hoteld.firstname+" "+hoteld.lastname;
     try {
         await pool.query("BEGIN");
-        const res=await pool.query("update hoteldetailed set availability=availability-1 where dateavail>=$1 and dateavail<=$2 and noofbeds=$3 and hotelid=$4",[hoteld.hotelcheckin,hoteld.hotelcheckout,hoteld.noofbeds,hoteld.hotelid]);
+        const res=await pool.query("update hoteldetailed set availability=availability-1 where dateavail>=$1 and dateavail<$2 and noofbeds=$3 and hotelid=$4",[hoteld.hotelcheckin,hoteld.hotelcheckout,hoteld.noofbeds,hoteld.hotelid]);
         const datetime= await getDateTime();
         
         await pool.query("insert into hotelbooking (username, hotelid, fromdate, todate, paymenmethod, amountpaid, personname, persongender, persondob,bookingtime) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",[request.session.username,hoteld.hotelid,hoteld.hotelcheckin,hoteld.hotelcheckout,null,hoteld.hotelfare,personname,hoteld.Gender,hoteld.dob,getDateTime()])
@@ -286,10 +286,17 @@ app.get('/option/searchflight',(request,response)=>{
             console.log(err)
         }
         var searchresult={flight:res.rows};
+        searchresult.noofperson=request.query.noofpassenger;
+        searchresult.traveldate=request.query.traveldate;
+        console.log(searchresult)
         response.render('flightoption.ejs',searchresult)
     });
 })
 
+app.get('/getflightcustomerdetails',(request,response)=>{
+    var flightdetails=request.query;
+    response.render('flightcustdet.ejs',flightdetails);
+})
 
 app.get('/userprofile',(req,res)=>{
     pool.connect();
@@ -335,7 +342,20 @@ app.get('/userbookings',(request,response)=>{
                             console.log(error2);
                         }
                         userdetail.hotelbooking=respons.rows;
+                        for(let i=0;i<userdetail.hotelbooking.length;i++){
+                            pool.query("select hotelname from hotel where hotelid=$1",[userdetail.hotelbooking[i].hotelid],(error3,response1)=>{
+                                if(error3){
+                                    response.redirect('/servererror');
+                                    console.log(error3)
+                                }
+                                userdetail.hotelbooking[i].hotelname=response1.rows[0].hotelname;
+                            })
+                        }
+                        setTimeout(() => {
+                            console.log(userdetail)
                         response.render('userbookings.ejs',userdetail);
+                        }, 2000);
+                        
                     })
                 })
             })

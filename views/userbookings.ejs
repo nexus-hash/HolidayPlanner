@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/build/tailwind.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Details</title>
+    <title>Booking History</title>
 <style>
   #try{
       font-size:100px;
@@ -34,7 +34,7 @@
         </div>
         <div class="mt-5 flex lg:mt-0 lg:ml-4">
           <span class="sm:ml-3 shadow-sm rounded-md">
-            <form action="/option/packge" id="return">
+            <form action="/option/package" id="return">
             <button type="submit" onclick="document.getElementById('return').submit()"class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 transition duration-150 ease-in-out">
               Return
             </button>
@@ -122,8 +122,11 @@
                       <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                           <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
                               <div class="flex-grow">
-                              <h2 class="text-gray-900 title-font font-medium"><%= hotelbooking[i].hotelname %></h2>
-                              <a href="#" class="text-gray-500">Details</a>
+                              <h4 class="text-gray-900 title-font font-medium">Booking ID: <%= hotelbooking[i].hotelbookingid %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Hotel Name: <%= hotelbooking[i].hotelname %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">From <%= hotelbooking[i].fromdate %> To <%= hotelbooking[i].todate %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Price: <%= hotelbooking[i].amountpaid %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Booked For: <%= hotelbooking[i].personname %></h4>
               </div>
             </div>
           </div>
@@ -150,9 +153,11 @@
                       <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
                           <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
                               <div class="flex-grow">
-                              <h2 class="text-gray-900 title-font font-medium">flightbooking[i].departure</h2>
-                              <h2 class="text-gray-900 title-font font-medium">flightbooking[i].arrival</h2>
-                              <a href="#" class="text-gray-500">Details</a>
+                              <h4 class="text-gray-900 title-font font-medium">Booking ID: <%= flightbooking[i].flightbookingid %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Airline Name: <%= flightbooking[i].airlinename %></h4>
+                              <h4 class="text-gray-900 title-font font-medium"><%= flightbooking[i].departure %> To <%= hotelbooking[i].arrival %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Fare: <%= flightbooking[i].fligtfare %></h4>
+                              <h4 class="text-gray-900 title-font font-medium"><%= flightbooking[i].personname %></h4>
               </div>
             </div>
           </div>
