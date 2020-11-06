@@ -154,9 +154,10 @@
                           <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
                               <div class="flex-grow">
                               <h4 class="text-gray-900 title-font font-medium">Booking ID: <%= flightbooking[i].flightbookingid %></h4>
-                              <h4 class="text-gray-900 title-font font-medium">Airline Name: <%= flightbooking[i].airlinename %></h4>
-                              <h4 class="text-gray-900 title-font font-medium"><%= flightbooking[i].departure %> To <%= hotelbooking[i].arrival %></h4>
-                              <h4 class="text-gray-900 title-font font-medium">Fare: <%= flightbooking[i].fligtfare %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">From <%= flightbooking[i].departure %> To <%= flightbooking[i].arrival %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Departure: <%= flightbooking[i].departuretime %> </h4>
+                              <h4 class="text-gray-900 title-font font-medium">Travel Date: <%= flightbooking[i].departuredate %></h4>
+                              <h4 class="text-gray-900 title-font font-medium">Fare: <%= flightbooking[i].amountpaid %></h4>
                               <h4 class="text-gray-900 title-font font-medium"><%= flightbooking[i].personname %></h4>
               </div>
             </div>

@@ -60,13 +60,11 @@ app.get('/option/package',(req,res)=>{
             return;
         }
         pkg = {package: response.rows};
-        //console.log(pkg)
-        /*if(req.session.username){
+        if(req.session.username){
         res.render('option.ejs',pkg)}
         else{
             res.redirect('/login');
-        }*/
-        res.render('option.ejs',pkg);
+        }
     })
     
 })
@@ -137,7 +135,6 @@ app.get('/option/tours',function (req,res){
 
 app.get('/option/tourdetails',(req,res)=>{
     var tourgetid=req.query.tourid;
-    console.log(tourgetid)
     var tourdetailsdata={};
     pool.connect();
     pool.query("select *from tour where tourid=$1",[tourgetid],(erro,respo)=>{
@@ -148,14 +145,12 @@ app.get('/option/tourdetails',(req,res)=>{
                 return;
             }
             tourdetailsdata.cab=resp.rows;
-            console.log(tourdetailsdata)
             pool.query("select guideid,knownlanguage,feeamount from tourguide where guideid in (select guideid from tourcontainsguide where tourcontainsguide.tourid=$1)",[tourgetid],(error,response)=>{
                 if(error){
                     console.log(error)
                     return;
                 }
                 tourdetailsdata.tourguide=response.rows;
-                console.log(tourdetailsdata);
                 res.render('tourdetails.ejs',tourdetailsdata);
             })
         })
@@ -288,7 +283,6 @@ app.get('/option/searchflight',(request,response)=>{
         var searchresult={flight:res.rows};
         searchresult.noofperson=request.query.noofpassenger;
         searchresult.traveldate=request.query.traveldate;
-        console.log(searchresult)
         response.render('flightoption.ejs',searchresult)
     });
 })
@@ -298,13 +292,37 @@ app.get('/getflightcustomerdetails',(request,response)=>{
     response.render('flightcustdet.ejs',flightdetails);
 })
 
+app.get('/bookflight',async (request,response)=>{
+    var bookingdetails=request.query;
+    var erroroccured2=false;
+    pool.connect();
+    try {
+        await pool.query("BEGIN");
+        var res = await pool.query("update flightavailability set noofticket=noofticket-$1 where flightnumber=$2 and dates=$3; ",[bookingdetails.noofperson,bookingdetails.flightnumber,bookingdetails.departuredate]);
+        for(let i=0;i<bookingdetails.noofperson;i++){
+            var personname=bookingdetails.firstname[i]+" "+bookingdetails.lastname[i];
+            await pool.query("insert into flightbooking(username, flightnumber, bookingtime, paymentmethod, personname, persongender, persondob, amountpaid, arrival, departure, departuretime,departuredate,airline) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)",[request.session.username,bookingdetails.flightnumber,getDateTime(),null,personname,bookingdetails.Gender[i],bookingdetails.dob[i],bookingdetails.fare,bookingdetails.arrival,bookingdetails.deaparture,bookingdetails.departuretime,bookingdetails.deaparturedate,bookingdetails.airlinename]);
+        }
+        await pool.query("COMMIT");
+    } catch (error) {
+        await pool.query("ROLLBACK");
+        errooccured2=true;
+    }finally{
+        if(erroroccured2){
+            response.redirect('/servererror')
+        }
+        else{
+            response.render('booked.ejs');
+        }
+    }
+})
+
 app.get('/userprofile',(req,res)=>{
     pool.connect();
     var userid=req.session.username;
     pool.query("select username,firstname,middlename,lastname,address,dob,phonenumber,emailid from users where username=$1",[userid],(error,response)=>{
         var userdetail={user:response.rows}
         res.render('profileview.ejs',userdetail)
-        console.log(userdetail);
     })
 })
 app.get('/userbookings',(request,response)=>{
@@ -330,7 +348,7 @@ app.get('/userbookings',(request,response)=>{
                     console.log(error);
                 }
                 userdetail.tourbooking=respo.rows;
-                pool.query("select flightbookingid, username, flightnumber, to_char(bookingtime,'YYYY-MM-DD HH24:MI:SS') as bookingtime, paymentmethod, personname, persongender,to_char( persondob,'YYYY-MM-DD HH24:MI:SS') as persondob, amountpaid from flightbooking where username=$1",[username],(error1,respon)=>{
+                pool.query("select flightbookingid, username, flightnumber, to_char(bookingtime,'YYYY-MM-DD HH24:MI:SS') as bookingtime, paymentmethod, personname, persongender,to_char( persondob,'YYYY-MM-DD HH24:MI:SS') as persondob, amountpaid ,arrival, departure, departuretime, to_char(departuredate,'YYYY-MM-DD') as departuredate, airline  from flightbooking where username=$1",[username],(error1,respon)=>{
                     if(error1){
                         response.redirect('/servererror')
                         console.log(error1)
@@ -352,7 +370,6 @@ app.get('/userbookings',(request,response)=>{
                             })
                         }
                         setTimeout(() => {
-                            console.log(userdetail)
                         response.render('userbookings.ejs',userdetail);
                         }, 2000);
                         
@@ -380,7 +397,6 @@ app.get('/signout',(req,res)=>{
 
 app.post('/signup',(request,response)=>{
     if(request.body.password==request.body.conpassword){
-        console.log(request);
         pool.connect().then(()=>console.log("Connected")).catch((e)=>console.log(e)).finally(()=>console.log);
         pool.query("select count(*) from users where emailid=$1",[request.body.email],function(err,res){
             if(err){
@@ -416,7 +432,8 @@ app.post("/login",(reque,respos)=>{
                 return;
             }
             else{
-                console.log("Wrong Password")
+                console.log("Wrong Password");
+                respos.render('wrongpassword.ejs');
             }
         })
     })

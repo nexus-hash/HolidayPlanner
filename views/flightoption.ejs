@@ -109,7 +109,7 @@
             <div class="w3-dropdown-hover w3-right">
               <button class="w3-button w3-black">User</button>
               <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-                <a href="#" class="w3-bar-item w3-button">Bookings</a>
+                <a href="/userbookings" class="w3-bar-item w3-button">Bookings</a>
                 <a href="" class="w3-bar-item w3-button">Account Details</a>
                 <a href="/signout" class="w3-bar-item w3-button">Sign Out</a>
               </div>
@@ -184,6 +184,7 @@
                                     <input type="hidden" name="departuredate" value=<%= traveldate %> >
                                     <input type="hidden" name="noofperson" value=<%= noofperson %> >
                                     <input type="hidden" name="airlinename" value=<%= flight[i].airlinename %> >
+                                    <input type="hidden" name="fare" value=<%= flight[i].flightfare %> >
                                 <a href="#" onclick="document.getElementById('getflightcustomerdetails<%= i %>').submit()" type="submit" class="text-indigo-600 hover:text-indigo-900">Book</a>
                                 </form>
                                 </td>
